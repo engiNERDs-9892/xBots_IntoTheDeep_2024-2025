@@ -42,7 +42,7 @@ public class Beaumont extends LinearOpMode {
         waitForStart();
 
         // Give it commands to run during Auto
-        Forward(1080,.50);
+        Forward(1080,.45);
 
 
 
