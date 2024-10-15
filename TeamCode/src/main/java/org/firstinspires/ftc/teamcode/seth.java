@@ -40,7 +40,7 @@ public class seth extends LinearOpMode {
         waitForStart();
 
         // Give it commands to run during Auto
-        Forward(1080,.50);
+        Forward(1080,.55);
 
         //This is the code to Begin 2024
 
