@@ -44,7 +44,7 @@ public class Huddy extends LinearOpMode {
         waitForStart();
 
         // Give it commands to run during auto;
-        Forward(1080,.55);
+        Forward(1080,.50);
 
 
     }// ends public final void runOpMode
