@@ -45,12 +45,7 @@ public class Will extends LinearOpMode {
         Forward(1080,.45);
         LEFT(1080, .45);
         Forward(1080, .10);
-        CLOCKWISE(1080, .20);
-        CLOCKWISE(1080, .20);
-        CLOCKWISE(1080, .20);
-        CLOCKWISE(1080, .20);
-        CLOCKWISE(1080, .20);
-        CLOCKWISE(1080, .20);
+        CLOCKWISE(6000, .20);
         Forward(1080, .15);
 
 
