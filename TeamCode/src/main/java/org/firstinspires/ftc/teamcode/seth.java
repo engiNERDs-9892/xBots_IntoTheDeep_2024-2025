@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
+import androidx.annotation.VisibleForTesting;
+
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -40,9 +42,7 @@ public class seth extends LinearOpMode {
         waitForStart();
 
         // Give it commands to run during Auto
-        Forward(1080,.55);
-
-        //This is the code to Begin 2024
+        Forward(1080,.45);
 
 
     }// ends public final void runOpMode
@@ -86,6 +86,192 @@ public class seth extends LinearOpMode {
 
 
     }//Closes Forward Fucntion
+    public void DumbballBack (int target, double speed) {
+        motorBL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorBR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorFR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorFL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
+
+        motorBL.setDirection(DcMotor.Direction.FORWARD);
+        motorBR.setDirection(DcMotor.Direction.REVERSE);
+        motorFL.setDirection(DcMotor.Direction.FORWARD);
+        motorFR.setDirection(DcMotor.Direction.REVERSE);
+
+        motorBL.setTargetPosition(target);
+        motorBR.setTargetPosition(target);
+        motorFL.setTargetPosition(target);
+        motorFR.setTargetPosition(target);
+
+        motorFL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        motorBR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        motorBL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        motorFR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        motorFL.setPower(speed);
+        motorFR.setPower(speed);
+        motorBL.setPower(speed);
+        motorBR.setPower(speed);
+
+        while(opModeIsActive() && (motorFL.isBusy())){
+
+        }
+
+        motorFL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorFR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorBL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorFR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+    }//Closes Back Fucntion
+        public void DumbballlLeft(int target, double speed) {
+            motorBL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            motorBR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            motorFR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            motorFL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+
+            motorBL.setDirection(DcMotor.Direction.REVERSE);
+            motorBR.setDirection(DcMotor.Direction.REVERSE);
+            motorFL.setDirection(DcMotor.Direction.FORWARD);
+            motorFR.setDirection(DcMotor.Direction.FORWARD);
+
+            motorBL.setTargetPosition(target);
+            motorBR.setTargetPosition(target);
+            motorFL.setTargetPosition(target);
+            motorFR.setTargetPosition(target);
+
+            motorFL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            motorBR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            motorBL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            motorFR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+            motorFL.setPower(speed);
+            motorFR.setPower(speed);
+            motorBL.setPower(speed);
+            motorBR.setPower(speed);
+
+            while(opModeIsActive() && (motorFL.isBusy())){
+
+            }
+
+            motorFL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            motorFR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            motorBL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            motorFR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        }//Closes Left Fucntion
+
+    public void DumbballlRight(int target, double speed) {
+        motorBL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorBR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorFR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorFL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+
+        motorBL.setDirection(DcMotor.Direction.FORWARD);
+        motorBR.setDirection(DcMotor.Direction.FORWARD);
+        motorFL.setDirection(DcMotor.Direction.REVERSE);
+        motorFR.setDirection(DcMotor.Direction.REVERSE);
+
+        motorBL.setTargetPosition(target);
+        motorBR.setTargetPosition(target);
+        motorFL.setTargetPosition(target);
+        motorFR.setTargetPosition(target);
+
+        motorFL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        motorBR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        motorBL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        motorFR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        motorFL.setPower(speed);
+        motorFR.setPower(speed);
+        motorBL.setPower(speed);
+        motorBR.setPower(speed);
+
+        while(opModeIsActive() && (motorFL.isBusy())){
+
+        }
+
+        motorFL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorFR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorBL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorFR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+    }//Closes Right Fucntion
+
+
+            public void DumbballCounterClockwise(int target, double speed) {
+                motorBL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                motorBR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                motorFR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                motorFL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+
+                motorBL.setDirection(DcMotor.Direction.REVERSE);
+                motorBR.setDirection(DcMotor.Direction.REVERSE);
+                motorFL.setDirection(DcMotor.Direction.REVERSE);
+                motorFR.setDirection(DcMotor.Direction.REVERSE);
+
+                motorBL.setTargetPosition(target);
+                motorBR.setTargetPosition(target);
+                motorFL.setTargetPosition(target);
+                motorFR.setTargetPosition(target);
+
+                motorFL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                motorBR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                motorBL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                motorFR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+                motorFL.setPower(speed);
+                motorFR.setPower(speed);
+                motorBL.setPower(speed);
+                motorBR.setPower(speed);
+
+                while(opModeIsActive() && (motorFL.isBusy())){
+
+                }
+
+                motorFL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                motorFR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                motorBL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                motorFR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+
+            }//Closes DumbballClockClockwise Fucntion
+    public void DumbballClockwise(int target, double speed) {
+        motorBL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorBR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorFR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorFL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+
+        motorBL.setDirection(DcMotor.Direction.FORWARD);
+        motorBR.setDirection(DcMotor.Direction.FORWARD);
+        motorFL.setDirection(DcMotor.Direction.FORWARD);
+        motorFR.setDirection(DcMotor.Direction.FORWARD);
+
+        motorBL.setTargetPosition(target);
+        motorBR.setTargetPosition(target);
+        motorFL.setTargetPosition(target);
+        motorFR.setTargetPosition(target);
+
+        motorFL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        motorBR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        motorBL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        motorFR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        motorFL.setPower(speed);
+        motorFR.setPower(speed);
+        motorBL.setPower(speed);
+        motorBR.setPower(speed);
+
+        while(opModeIsActive() && (motorFL.isBusy())){
+
+        }
+
+        motorFL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorFR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorBL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorFR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+
+    }//Closes DumbballClockwise Fucntion
 
 }//Closes Code
