@@ -47,6 +47,25 @@ public class Owen extends LinearOpMode {
 
         // Give it commands to run during auto
         Forward(24,.50);
+        TurnLeft(69, 60);
+        Forward(13, 50);
+        Back(13, 69);
+        TurnRight(69, 60);
+        Forward(35, 40);
+        TurnRight(69, 58);
+        Back(78, 47);
+        TurnLeft(16, 30);
+        TurnLeft(16, 30);
+        TurnLeft(16, 30);
+        TurnLeft(16, 30);
+        TurnLeft(16, 30);
+        TurnLeft(16, 30);
+        TurnLeft(16, 30);
+        TurnLeft(16, 30);
+        TurnLeft(16, 30);
+
+
+
 
 
 
@@ -58,7 +77,7 @@ public class Owen extends LinearOpMode {
     }// ends public final void runOpMode
 
 //enter functions here
- public void Forward(int target, double speed) {
+ public void Forward (int target, double speed) {
       motorFL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
       motorBL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
       motorFR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -92,5 +111,111 @@ public class Owen extends LinearOpMode {
       motorFR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
       motorBR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
  }//closes forward function
+
+    public void Back (int target, double speed) {
+        motorFL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorBL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorFR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorBR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+        motorBL.setDirection(DcMotorSimple.Direction.FORWARD);
+        motorFL.setDirection(DcMotorSimple.Direction.FORWARD);
+        motorBR.setDirection(DcMotorSimple.Direction.REVERSE);
+        motorFR.setDirection(DcMotorSimple.Direction.REVERSE);
+
+        motorBL.setTargetPosition(target*in);
+        motorFL.setTargetPosition(target*in);
+        motorBR.setTargetPosition(target*in);
+        motorFR.setTargetPosition(target*in);
+
+        motorBL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        motorFL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        motorBR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        motorFR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        motorBL.setPower(speed);
+        motorBR.setPower(speed);
+        motorFL.setPower(speed);
+        motorFR.setPower(speed);
+
+        while (opModeIsActive() && (motorBL.isBusy())){
+
+        }
+        motorFL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorBL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorFR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorBR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+    }//closes Back function
+
+
+    public void TurnRight(int target, double speed) {
+        motorFL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorBL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorFR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorBR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+        motorBL.setDirection(DcMotorSimple.Direction.FORWARD);
+        motorFL.setDirection(DcMotorSimple.Direction.REVERSE);
+        motorBR.setDirection(DcMotorSimple.Direction.FORWARD);
+        motorFR.setDirection(DcMotorSimple.Direction.REVERSE);
+
+        motorBL.setTargetPosition(target*in);
+        motorFL.setTargetPosition(target*in);
+        motorBR.setTargetPosition(target*in);
+        motorFR.setTargetPosition(target*in);
+
+        motorBL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        motorFL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        motorBR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        motorFR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        motorBL.setPower(speed);
+        motorBR.setPower(speed);
+        motorFL.setPower(speed);
+        motorFR.setPower(speed);
+
+        while (opModeIsActive() && (motorBL.isBusy())){
+
+        }
+        motorFL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorBL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorFR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorBR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+    }//closes TurnRight function
+
+    public void TurnLeft(int target, double speed) {
+        motorFL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorBL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorFR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorBR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+        motorBL.setDirection(DcMotorSimple.Direction.REVERSE);
+        motorFL.setDirection(DcMotorSimple.Direction.FORWARD);
+        motorBR.setDirection(DcMotorSimple.Direction.REVERSE);
+        motorFR.setDirection(DcMotorSimple.Direction.FORWARD);
+
+        motorBL.setTargetPosition(target*in);
+        motorFL.setTargetPosition(target*in);
+        motorBR.setTargetPosition(target*in);
+        motorFR.setTargetPosition(target*in);
+
+        motorBL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        motorFL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        motorBR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        motorFR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        motorBL.setPower(speed);
+        motorBR.setPower(speed);
+        motorFL.setPower(speed);
+        motorFR.setPower(speed);
+
+        while (opModeIsActive() && (motorBL.isBusy())){
+
+        }
+        motorFL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorBL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorFR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorBR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+    }//closes TurnLeft function
 
 }//LinearOpMode
