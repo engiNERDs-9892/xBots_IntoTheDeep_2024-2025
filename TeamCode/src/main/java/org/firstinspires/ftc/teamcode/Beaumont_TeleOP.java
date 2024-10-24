@@ -47,6 +47,29 @@ double max;
   double leftBackPower = axial - lateral + yaw;
   double rightBackPower = axial +lateral - yaw;
 
+  max = Math.max(Math.abs(leftFrontPower), Math.abs(rightFrontPower));
+  max = Math.max(max, Math.abs(leftBackPower));
+  max = Math.max(max, Math.abs(rightBackPower));
+
+  if (max >1.0) {
+      leftFrontPower /= max;
+      rightFrontPower /= max;
+      leftBackPower /= max;
+      rightBackPower /= max;
+    }
+
+  if (gamepad1.right_trigger !=0) {
+      motorFR.setPower(rightFrontPower * .2);
+      motorBR.setPower(rightBackPower *.2);
+      motorFL.setPower(leftFrontPower *.2);
+      motorBL.setPower(leftBackPower *.2);
+  }
+  else {
+      motorFR.setPower(rightFrontPower);
+      motorBR.setPower(rightBackPower);
+      motorFL.setPower(leftFrontPower);
+      motorBL.setPower(leftBackPower);
+  }
 
 
 }// Closes TeleOp While Loop
