@@ -16,14 +16,15 @@ public class Owen_Teliop extends LinearOpMode {
 
     @Override
     public void runOpMode() {
+
         //put variables here
 
 
 //Hardware map
         motorFL = hardwareMap.get(DcMotor.class, "motorFL");
-        motorFR = hardwareMap.get(DcMotor.class, "motorFL");
-        motorBL = hardwareMap.get(DcMotor.class, "motorFL");
-        motorBR = hardwareMap.get(DcMotor.class, "motorFL");
+        motorFR = hardwareMap.get(DcMotor.class, "motorFR");
+        motorBL = hardwareMap.get(DcMotor.class, "motorBL");
+        motorBR = hardwareMap.get(DcMotor.class, "motorBR");
         //set motor directions
         motorFL.setDirection(DcMotor.Direction.REVERSE);
         motorFR.setDirection(DcMotor.Direction.FORWARD);
@@ -49,6 +50,32 @@ public class Owen_Teliop extends LinearOpMode {
 
 
 
+     max = Math.max(Math.abs(leftFrontPower), Math.abs(rightFrontPower));
+     max = Math.max(max, Math.abs(leftBackPower));
+     max = Math.max(max, Math.abs(rightBackPower));
+
+
+if (max >1.0) {
+    leftFrontPower /=max;
+    rightFrontPower /=max;
+    leftBackPower /=max;
+    rightBackPower /=max;
+
+}
+
+
+if (gamepad1.right_trigger !=0) {
+    motorFR.setPower(rightFrontPower * .2);
+    motorBR.setPower(rightBackPower * .2);
+    motorFL.setPower(leftFrontPower * .2);
+    motorBL.setPower(leftBackPower * .2);
+}
+else {
+    motorFR.setPower(rightFrontPower);
+    motorBR.setPower(rightBackPower);
+    motorFL.setPower(leftFrontPower);
+    motorBL.setPower(leftBackPower );
+}
     }//closes Teliop while loop
 
     }//Closes run op mode
