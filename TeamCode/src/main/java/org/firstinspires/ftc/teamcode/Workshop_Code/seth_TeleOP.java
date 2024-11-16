@@ -1,10 +1,12 @@
 package org.firstinspires.ftc.teamcode.Workshop_Code;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
+@Disabled
 @TeleOp (name="seth TeleOP",group="Linear OpMode")
 public class seth_TeleOP extends LinearOpMode {
     //Declare Motors, Servors & Sensors

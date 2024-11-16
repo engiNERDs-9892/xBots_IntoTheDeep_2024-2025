@@ -5,8 +5,8 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
-@Autonomous(name="Just Park-Long)", group="Iterative Opmode")
-public class JustPark_Long extends LinearOpMode {
+@Autonomous(name="Just Score Back)", group="Iterative Opmode")
+public class JustScoreBack extends LinearOpMode {
 
 //Initialize the code - Get it ready to run
 
@@ -46,11 +46,11 @@ public class JustPark_Long extends LinearOpMode {
         waitForStart();
 
         // Give it commands to run during auto
-        Forward(72,.50);
+        Back(17,24);
+        Forward(70, 50);
 
 
-
-    }// ends public final void runOpModeu l
+    }// ends public final void runOpMode
 
 //enter functions here
  public void Forward (int target, double speed) {

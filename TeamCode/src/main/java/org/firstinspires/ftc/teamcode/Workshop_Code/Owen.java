@@ -1,10 +1,12 @@
 package org.firstinspires.ftc.teamcode.Workshop_Code;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
+@Disabled
 @Autonomous(name="OwenOwe-0-Burrito(0-0)", group="Iterative Opmode")
 public class Owen extends LinearOpMode {
 

@@ -1,9 +1,11 @@
 package org.firstinspires.ftc.teamcode.Workshop_Code;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
+@Disabled
 @Autonomous(name="Anthony", group="Iterative Opmode")
 public class seth extends LinearOpMode {
 
