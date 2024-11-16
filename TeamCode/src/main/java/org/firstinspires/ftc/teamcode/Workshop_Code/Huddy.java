@@ -1,14 +1,15 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.Workshop_Code;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
-@Autonomous(name="Beaumont", group="Iterative Opmode")
-public class Beaumont extends LinearOpMode {
+@Autonomous(name="Huddy CODE", group="Iterative Opmode")
+public class Huddy extends LinearOpMode {
 
 //Initialize the code - Get it ready to run
+    //If you read this and are about to code you are in for a doozy.
 
     //Create Motor/Servo/Sensor List
     private DcMotor motorFL;
@@ -24,74 +25,48 @@ public class Beaumont extends LinearOpMode {
         motorFR = hardwareMap.dcMotor.get("motorFR");
         motorBR = hardwareMap.dcMotor.get("motorBR");
 
+
         int in = 45;
+
         //Set Motor Power to 0 to start
         motorFL.setPower(0);
         motorBL.setPower(0);
         motorFR.setPower(0);
         motorBR.setPower(0);
 
-        motorFR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        motorFL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        motorBR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        motorBL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
+        motorFL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorFR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorBL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorBR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
 
         // Tell the Code to wait to start after initialization
         waitForStart();
 
-        // Give it commands to run during Auto
-        Forward(1080,.45);
-        Left(2160,.5);
-        Forward(1080,.5);
+        // Give it commands to run during auto
+
+        Left(2180, .5);
+        Right(4360, .5);
+        Left(2180, .5);
+        Clockwise(3000,.5);
+
+
 
 
 
     }// ends public final void runOpMode
 
-//ENTER FUNCTIONS HERE
-  public void Back(int target, double speed) {
+
+
+
+    //ENTER FUNCTIONS HERE
+
+
+    public void Forward(int target, double speed){
         motorFL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorFR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorBR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorBL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        motorFR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-
-        motorBL.setDirection(DcMotorSimple.Direction.FORWARD);
-        motorFL.setDirection(DcMotorSimple.Direction.FORWARD);
-        motorFR.setDirection(DcMotorSimple.Direction.REVERSE);
-        motorBR.setDirection(DcMotorSimple.Direction.REVERSE);
-
-        motorBL.setTargetPosition(target);
-        motorBR.setTargetPosition(target);
-        motorFL.setTargetPosition(target);
-        motorFR.setTargetPosition(target);
-
-        motorFL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        motorBR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        motorFR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        motorBL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
-        motorFL.setPower(speed);
-        motorFR.setPower(speed);
-        motorBL.setPower(speed);
-        motorBR.setPower(speed);
-
-        while (opModeIsActive() && (motorBL.isBusy())){
-
-        }
-      motorFL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-      motorFR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-      motorBL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-      motorFR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-
-  }// Closes Forward Function
-
-    public void Forward(int target, double speed) {
-        motorFL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        motorFR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        motorBL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        motorFR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         motorBL.setDirection(DcMotorSimple.Direction.REVERSE);
         motorFL.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -104,30 +79,68 @@ public class Beaumont extends LinearOpMode {
         motorFR.setTargetPosition(target);
 
         motorFL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        motorBR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         motorFR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         motorBL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        motorBR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
         motorFL.setPower(speed);
         motorFR.setPower(speed);
         motorBL.setPower(speed);
         motorBR.setPower(speed);
-
-        while (opModeIsActive() && (motorBL.isBusy())){
+        while(opModeIsActive() && (motorBL.isBusy())) {
 
         }
+
         motorFL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorFR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorBL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorBR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+
+    }// Closes forward function
+
+    public void Back(int target, double speed){
+        motorFL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorFR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorBR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorBL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-    }// Closes Backwards Function
+        motorBL.setDirection(DcMotorSimple.Direction.FORWARD);
+        motorFL.setDirection(DcMotorSimple.Direction.FORWARD);
+        motorFR.setDirection(DcMotorSimple.Direction.REVERSE);
+        motorBR.setDirection(DcMotorSimple.Direction.REVERSE);
 
-    public void Right (int target, double speed) {
+        motorBL.setTargetPosition(target);
+        motorBR.setTargetPosition(target);
+        motorFL.setTargetPosition(target);
+        motorFR.setTargetPosition(target);
+
+        motorFL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        motorFR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        motorBL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        motorBR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        motorFL.setPower(speed);
+        motorFR.setPower(speed);
+        motorBL.setPower(speed);
+        motorBR.setPower(speed);
+        while(opModeIsActive() && (motorBL.isBusy())) {
+
+        }
+
         motorFL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorFR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorBL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorBR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+
+    }// Closes forward function
+
+    public void Right(int target, double speed){
+        motorFL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorFR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorBR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorBL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         motorBL.setDirection(DcMotorSimple.Direction.FORWARD);
         motorFL.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -140,30 +153,31 @@ public class Beaumont extends LinearOpMode {
         motorFR.setTargetPosition(target);
 
         motorFL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        motorBR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         motorFR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         motorBL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        motorBR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
         motorFL.setPower(speed);
         motorFR.setPower(speed);
         motorBL.setPower(speed);
         motorBR.setPower(speed);
-
-        while (opModeIsActive() && (motorBL.isBusy())){
+        while(opModeIsActive() && (motorBL.isBusy())) {
 
         }
+
         motorFL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorFR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorBL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        motorFR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorBR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-    }// Closes Right Function
 
-    public void Left (int target, double speed) {
+    }// Closes forward function
+
+    public void Left(int target, double speed){
         motorFL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorFR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorBR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorBL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        motorFR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         motorBL.setDirection(DcMotorSimple.Direction.REVERSE);
         motorFL.setDirection(DcMotorSimple.Direction.FORWARD);
@@ -176,30 +190,31 @@ public class Beaumont extends LinearOpMode {
         motorFR.setTargetPosition(target);
 
         motorFL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        motorBR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         motorFR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         motorBL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        motorBR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
         motorFL.setPower(speed);
         motorFR.setPower(speed);
         motorBL.setPower(speed);
         motorBR.setPower(speed);
-
-        while (opModeIsActive() && (motorBL.isBusy())){
+        while(opModeIsActive() && (motorBL.isBusy())) {
 
         }
+
         motorFL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorFR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorBL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        motorFR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorBR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-    }// Closes Left Function
 
-    public void Clockwise (int target, double speed) {
+    }// Closes forward function
+
+    public void Clockwise (int target, double speed){
         motorFL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorFR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorBR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorBL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        motorFR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         motorBL.setDirection(DcMotorSimple.Direction.REVERSE);
         motorFL.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -212,30 +227,31 @@ public class Beaumont extends LinearOpMode {
         motorFR.setTargetPosition(target);
 
         motorFL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        motorBR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         motorFR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         motorBL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        motorBR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
         motorFL.setPower(speed);
         motorFR.setPower(speed);
         motorBL.setPower(speed);
         motorBR.setPower(speed);
-
-        while (opModeIsActive() && (motorBL.isBusy())){
+        while(opModeIsActive() && (motorBL.isBusy())) {
 
         }
+
         motorFL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorFR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorBL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        motorFR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorBR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-    }// Closes Clockwise Function
 
-    public void CounterClockwise (int target, double speed) {
+    }// Closes forward function
+
+    public void Counterclockwise(int target, double speed){
         motorFL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorFR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorBR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorBL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        motorFR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         motorBL.setDirection(DcMotorSimple.Direction.FORWARD);
         motorFL.setDirection(DcMotorSimple.Direction.FORWARD);
@@ -248,23 +264,24 @@ public class Beaumont extends LinearOpMode {
         motorFR.setTargetPosition(target);
 
         motorFL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        motorBR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         motorFR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         motorBL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        motorBR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
         motorFL.setPower(speed);
         motorFR.setPower(speed);
         motorBL.setPower(speed);
         motorBR.setPower(speed);
-
-        while (opModeIsActive() && (motorBL.isBusy())){
+        while(opModeIsActive() && (motorBL.isBusy())) {
 
         }
+
         motorFL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorFR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorBL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        motorFR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorBR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-    }// Closes CounterClockwise Function
+
+    }// Closes forward function
 
 }//LinearOpMode

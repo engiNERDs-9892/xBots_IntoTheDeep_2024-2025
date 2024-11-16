@@ -1,11 +1,8 @@
-package org.firstinspires.ftc.teamcode;
-
-import androidx.annotation.VisibleForTesting;
+package org.firstinspires.ftc.teamcode.Workshop_Code;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 @Autonomous(name="Anthony", group="Iterative Opmode")
 public class seth extends LinearOpMode {
