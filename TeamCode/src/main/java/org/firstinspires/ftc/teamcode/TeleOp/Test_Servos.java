@@ -43,14 +43,14 @@ public class Test_Servos extends LinearOpMode {
             @Override
             public void trigger() {
                 Servo servo = servoList[currentServo];
-                servo.setPosition(servo.getPosition() + 0.05);
+                servo.setPosition(servo.getPosition() + 0.01);
             }
         };
         repeatButton backward = new repeatButton() {
             @Override
             public void trigger() {
                 Servo servo = servoList[currentServo];
-                servo.setPosition(servo.getPosition() - 0.05);
+                servo.setPosition(servo.getPosition() - 0.01);
             }
         };
         telemetry.addLine("Controls\n  Bumpers to switch between servos\n  dpad to change servo positions");
@@ -69,7 +69,7 @@ public class Test_Servos extends LinearOpMode {
             prev.update(gamepad1.right_bumper);
             forward.update(gamepad1.dpad_right);
             backward.update(gamepad1.dpad_left);
-            telemetry.addData("Current Servo", "%s %d", servoNames[currentServo], servoList[currentServo].getPosition());
+            telemetry.addData("Current Servo", "%s %f", servoNames[currentServo], servoList[currentServo].getPosition());
             telemetry.addLine("Servo positions");
             for(int i = 0; i < servoNames.length; i++){
                 telemetry.addData(servoNames[i], servoList[i].getPosition());

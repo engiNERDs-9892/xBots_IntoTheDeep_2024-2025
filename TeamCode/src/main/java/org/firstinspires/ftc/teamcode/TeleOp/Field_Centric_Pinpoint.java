@@ -4,17 +4,25 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.Servo;
 
 @TeleOp
 public class Field_Centric_Pinpoint extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         // Declare our motors
+        Servo servoIntake;
+        Servo servoJoint;
+        Servo servoSlide;
         // Make sure your ID's match your configuration
         DcMotor frontLeftMotor = hardwareMap.dcMotor.get("motorFL");
         DcMotor backLeftMotor = hardwareMap.dcMotor.get("motorBL");
         DcMotor frontRightMotor = hardwareMap.dcMotor.get("motorFR");
         DcMotor backRightMotor = hardwareMap.dcMotor.get("motorBR");
+        servoIntake = hardwareMap.servo.get("servoIntake");
+        servoJoint = hardwareMap.servo.get("servoJoint");
+        servoSlide = hardwareMap.servo.get("servoSlide");
+
 
         GoBildaPinpointDriver odo = hardwareMap.get(GoBildaPinpointDriver.class,"odo");
 
@@ -36,6 +44,8 @@ public class Field_Centric_Pinpoint extends LinearOpMode {
         odo.setEncoderDirections(GoBildaPinpointDriver.EncoderDirection.FORWARD, GoBildaPinpointDriver.EncoderDirection.FORWARD);
         odo.resetPosAndIMU();
 
+        servoSlide.setPosition(.57);
+        servoJoint.setPosition(.91);
         waitForStart();
 
         if (isStopRequested()) return;
@@ -103,9 +113,31 @@ public class Field_Centric_Pinpoint extends LinearOpMode {
 
             telemetry.update();
 
+            //Puts Slide and Joint into Extended Position with Controller 2 A button
+                if (gamepad2.a){
+                 servoSlide.setPosition(.5);
+                 servoJoint.setPosition(.45);
+                }
+            //Puts Slide and Joint into Retracted Position with Controller 2 B button
+                if(gamepad2.b){
+                    servoSlide.setPosition(.57);
+                    servoJoint.setPosition(.95);
+                }
 
+            //Extend joint only with controller 2 y button
+                if (gamepad2.y){
+                    servoJoint.setPosition(.45);
+                }
+            //Pick up Spit out Samples
+                if (gamepad2.left_trigger == 0 && gamepad2.right_trigger == 0){
+                   servoIntake.setPosition(0.5);
+                } else if (gamepad2.right_trigger != 0 && gamepad2.left_trigger == 0) {
+                    servoIntake.setPosition(0.9);
+                }
+                else if (gamepad2.left_trigger != 0 && gamepad2.right_trigger == 0){
+                    servoIntake.setPosition(0.1);
+                }
 
-
-        }
-    }
-}
+        }// While Loop for OpMode Active
+    }//Ends Public Void
+}//Ends Linear Op Mode

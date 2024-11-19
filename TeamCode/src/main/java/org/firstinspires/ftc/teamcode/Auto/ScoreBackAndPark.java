@@ -1,3 +1,4 @@
+
 package org.firstinspires.ftc.teamcode.Auto;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
@@ -5,8 +6,8 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
-@Autonomous(name="Just Score Back)", group="Iterative Opmode")
-public class JustScoreBack extends LinearOpMode {
+@Autonomous(name="Score Back and Park)", group="Iterative Opmode")
+public class ScoreBackAndPark extends LinearOpMode {
 
 //Initialize the code - Get it ready to run
 
@@ -42,11 +43,12 @@ public class JustScoreBack extends LinearOpMode {
 
 
 
-        // Tell the Code to wait to start after initialization
+        // Tell np5the Code to wait to start after initialization
         waitForStart();
 
         // Give it commands to run during auto
-        Back(17,.24);
+        Back(30,.35);
+        Forward(90, .50);
 
 
     }// ends public final void runOpMode
