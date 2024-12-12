@@ -113,29 +113,24 @@ public class Field_Centric_Pinpoint extends LinearOpMode {
 
             telemetry.update();
 
-            //Puts Slide and Joint into Extended Position with Controller 2 A button
-                if (gamepad2.a){
+            //Puts Slide into Extended Position with Controller 2 X button
+                if (gamepad2.x){
                  servoSlide.setPosition(.33);
-                 //servoJoint.setPosition(.45);
+
                 }
-            //Puts Slide and Joint into Retracted Position with Controller 2 B button
+            //Puts Slide in  Neutral Position with Controller 2 A button
+            if (gamepad2.a){
+                servoSlide.setPosition(.48);
+
+            }
+            //Puts Slide into Retracted Position with Controller 2 B button
                 if(gamepad2.b){
                     servoSlide.setPosition(.53);
-                    //servoJoint.setPosition(.95);
                 }
 
             //Extend joint only with controller 2 y button
                 if (gamepad2.y){
                     //servoJoint.setPosition(.45);
-                }
-            //Pick up Spit out Samples
-                if (gamepad2.left_trigger == 0 && gamepad2.right_trigger == 0){
-                   //servoIntake.setPosition(0.5);
-                } else if (gamepad2.right_trigger != 0 && gamepad2.left_trigger == 0) {
-                    //servoIntake.setPosition(0.9);
-                }
-                else if (gamepad2.left_trigger != 0 && gamepad2.right_trigger == 0){
-                    //servoIntake.setPosition(0.1);
                 }
 
         }// While Loop for OpMode Active
