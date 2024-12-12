@@ -10,7 +10,7 @@ import org.firstinspires.ftc.teamcode.TeleOp.repeatButton;
 @TeleOp
 public class Test_Servos extends LinearOpMode {
     public static Servo[] servoList = new Servo[12];
-    public static String[] servoNames = {"servoClaw", "servoSlide"8};
+    public static String[] servoNames = {"servoClaw", "servoSlide"};
     //public static String[] servoNames = {"servo0", "servo1", "servo2", "servo3", "servo4"};
     public static int currentServo;
 
