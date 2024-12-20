@@ -113,6 +113,7 @@ public class Field_Centric_Pinpoint extends LinearOpMode {
 
             telemetry.update();
 
+            //Arm Code
             //Puts Slide into Extended Position with Controller 2 X button
                 if (gamepad2.x){
                  servoSlide.setPosition(.33);
@@ -131,6 +132,12 @@ public class Field_Centric_Pinpoint extends LinearOpMode {
             //Extend joint only with controller 2 y button
                 if (gamepad2.y){
                     //servoJoint.setPosition(.45);
+                }
+
+            //moves hand/grabber
+                if (gamepad2.left_stick_button){
+
+
                 }
 
         }// While Loop for OpMode Active
