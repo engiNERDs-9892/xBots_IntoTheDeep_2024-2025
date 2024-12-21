@@ -11,17 +11,20 @@ public class Field_Centric_Pinpoint extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         // Declare our motors
-        Servo servoIntake;
-        Servo servoJoint;
         Servo servoSlide;
+        Servo servoHand;
+        DcMotor motorElbow;
+
+
         // Make sure your ID's match your configuration
         DcMotor frontLeftMotor = hardwareMap.dcMotor.get("motorFL");
         DcMotor backLeftMotor = hardwareMap.dcMotor.get("motorBL");
         DcMotor frontRightMotor = hardwareMap.dcMotor.get("motorFR");
         DcMotor backRightMotor = hardwareMap.dcMotor.get("motorBR");
-        servoIntake = hardwareMap.servo.get("servoIntake");
-        servoJoint = hardwareMap.servo.get("servoJoint");
         servoSlide = hardwareMap.servo.get("servoSlide");
+        servoHand = hardwareMap.servo.get("servoHand");
+        motorElbow = hardwareMap.dcMotor.get("motorElbow");
+
 
 
         GoBildaPinpointDriver odo = hardwareMap.get(GoBildaPinpointDriver.class,"odo");
@@ -129,17 +132,26 @@ public class Field_Centric_Pinpoint extends LinearOpMode {
                     servoSlide.setPosition(.53);
                 }
 
-            //Extend joint only with controller 2 y button
-                if (gamepad2.y){
-                    //servoJoint.setPosition(.45);
-                }
 
-            //moves hand/grabber
-                if (gamepad2.left_stick_button){
+                //moves arm elbow
+                motorElbow.setPower(gamepad2.right_stick_x);
 
 
-                }
 
-        }// While Loop for OpMode Active
+
+            //opens hand/grabber
+            if (gamepad2.right_trigger != 0) {
+                servoHand.setPosition(0);
+
+            }
+
+            //closes hand/grabber
+            if (gamepad2.left_trigger != 0) {
+                servoHand.setPosition(100);
+
+            }
+
+
+            }// While Loop for OpMode Active
     }//Ends Public Void
 }//Ends Linear Op Mode
