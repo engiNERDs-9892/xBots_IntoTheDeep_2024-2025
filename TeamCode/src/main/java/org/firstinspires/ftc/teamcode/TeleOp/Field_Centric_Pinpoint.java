@@ -14,6 +14,8 @@ public class Field_Centric_Pinpoint extends LinearOpMode {
         Servo servoSlide;
         Servo servoHand;
         DcMotor motorElbow;
+        DcMotor motorBucketArm;
+        Servo servoBucket;
 
 
         // Make sure your ID's match your configuration
@@ -24,6 +26,9 @@ public class Field_Centric_Pinpoint extends LinearOpMode {
         servoSlide = hardwareMap.servo.get("servoSlide");
         servoHand = hardwareMap.servo.get("servoHand");
         motorElbow = hardwareMap.dcMotor.get("motorElbow");
+        motorBucketArm = hardwareMap.dcMotor.get("motorBucketArm");
+        servoBucket = hardwareMap.servo.get("servoBucket");
+
 
 
 
@@ -92,22 +97,22 @@ public class Field_Centric_Pinpoint extends LinearOpMode {
             frontRightMotor.setPower(frontRightPower);
             backRightMotor.setPower(backRightPower); //Slow mode if left trigger is pused
 
-        //Use Super Slow Mode if Left Trigger is pushed
+            //Use Super Slow Mode if Left Trigger is pushed
             if (gamepad1.left_trigger != 0) {
                 frontLeftMotor.setPower(.1 * frontLeftPower);
                 backLeftMotor.setPower(.1 * backLeftPower);
                 frontRightMotor.setPower(.1 * frontRightPower);
                 backRightMotor.setPower(.1 * backRightPower);
 
-        //Use Slow Mode if Left Trigger is pushed
-            }   else if (gamepad1.right_trigger != 0) {
+                //Use Slow Mode if Left Trigger is pushed
+            } else if (gamepad1.right_trigger != 0) {
                 frontLeftMotor.setPower(.5 * frontLeftPower);
                 backLeftMotor.setPower(.5 * backLeftPower);
                 frontRightMotor.setPower(.5 * frontRightPower);
                 backRightMotor.setPower(.5 * backRightPower);
             }
-        //Run at Full Power if not button is pushed
-            else{
+            //Run at Full Power if not button is pushed
+            else {
                 frontLeftMotor.setPower(1 * frontLeftPower);
                 backLeftMotor.setPower(1 * backLeftPower);
                 frontRightMotor.setPower(1 * frontRightPower);
@@ -118,24 +123,34 @@ public class Field_Centric_Pinpoint extends LinearOpMode {
 
             //Arm Code
             //Puts Slide into Extended Position with Controller 2 X button
-                if (gamepad2.x){
-                 servoSlide.setPosition(.33);
+            if (gamepad2.x) {
+                servoSlide.setPosition(.33);
 
-                }
+            }
             //Puts Slide in  Neutral Position with Controller 2 A button
-            if (gamepad2.a){
+            if (gamepad2.a) {
                 servoSlide.setPosition(.48);
 
             }
             //Puts Slide into Retracted Position with Controller 2 B button
-                if(gamepad2.b){
-                    servoSlide.setPosition(.53);
-                }
+            if (gamepad2.b) {
+                servoSlide.setPosition(.53);
+            }
 
+            //moves arm elbow
+            motorElbow.setPower(gamepad2.right_stick_y * -0.25);
 
-                //moves arm elbow
-                motorElbow.setPower(gamepad2.right_stick_x);
+            //moves bucket up
+           if (gamepad2.left_stick_y !=0) {
+               motorBucketArm.setPower(gamepad2.left_stick_y * -1 );
+           }
 
+           //moves bucket to dump
+            if (gamepad2.left_stick_x !=0) {
+                servoBucket.setPosition(gamepad2.left_stick_x *0.25);
+
+            }
+            else  servoBucket.setPosition(-0.15);
 
 
 
@@ -145,11 +160,29 @@ public class Field_Centric_Pinpoint extends LinearOpMode {
 
             }
 
-            //closes hand/grabber
+
+
+               //opens hand/grabber
+               if (gamepad2.right_trigger != 0) {
+                   servoHand.setPosition(0);
+
+               }
+
+               //closes hand/grabber
+               if (gamepad2.left_trigger != 0) {
+                   servoHand.setPosition(100);
+
+               }
+
+
+
+               //closes hand/grabber
             if (gamepad2.left_trigger != 0) {
                 servoHand.setPosition(100);
 
             }
+
+
 
 
             }// While Loop for OpMode Active
