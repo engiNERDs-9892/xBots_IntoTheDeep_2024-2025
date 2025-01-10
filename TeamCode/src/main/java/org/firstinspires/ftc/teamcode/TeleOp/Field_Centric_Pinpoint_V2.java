@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
 @TeleOp
-public class Field_Centric_Pinpoint extends LinearOpMode {
+public class Field_Centric_Pinpoint_V2 extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         // Declare our motors
@@ -121,20 +121,21 @@ public class Field_Centric_Pinpoint extends LinearOpMode {
 
             telemetry.update();
 
-            //Arm Code
-            //Puts Slide into Extended Position with Controller 2 X button
-            if (gamepad2.x) {
-                servoSlide.setPosition(.33);
+            //Front Slide Code:
+            //Stops the Front Slide
+            if (gamepad2.left_trigger == 0 && gamepad2.right_trigger ==0) {
+                servoSlide.setPosition(.5);
 
             }
-            //Puts Slide in  Neutral Position with Controller 2 A button
-            if (gamepad2.a) {
-                servoSlide.setPosition(.48);
+            if (gamepad2.left_trigger != 0) {
+                servoSlide.setPosition(.75);
 
             }
-            //Puts Slide into Retracted Position with Controller 2 B button
-            if (gamepad2.b) {
-                servoSlide.setPosition(.53);
+
+            //Retract the Front Slide
+            if (gamepad2.right_trigger != 0) {
+                servoSlide.setPosition(.25);
+
             }
 
             //moves arm elbow
@@ -155,14 +156,14 @@ public class Field_Centric_Pinpoint extends LinearOpMode {
 
 
             //opens hand/grabber
-            if (gamepad2.right_trigger != 0) {
+            if (gamepad2.a) {
                 servoHand.setPosition(0);
 
             }
 
 
            //closes hand/grabber
-           if (gamepad2.left_trigger != 0) {
+           if (gamepad2.x) {
                servoHand.setPosition(1);
 
            }
