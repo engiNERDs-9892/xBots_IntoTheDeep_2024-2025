@@ -1,15 +1,14 @@
 package org.firstinspires.ftc.teamcode.TeleOp;
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.TouchSensor;
 
 @TeleOp
-@Disabled
-public class Field_Centric_Pinpoint extends LinearOpMode {
+public class Driver_Control extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         // Declare our motors
@@ -18,6 +17,7 @@ public class Field_Centric_Pinpoint extends LinearOpMode {
         DcMotor motorElbow;
         DcMotor motorBucketArm;
         Servo servoBucket;
+        TouchSensor limit;
 
 
         // Make sure your ID's match your configuration
@@ -30,6 +30,7 @@ public class Field_Centric_Pinpoint extends LinearOpMode {
         motorElbow = hardwareMap.dcMotor.get("motorElbow");
         motorBucketArm = hardwareMap.dcMotor.get("motorBucketArm");
         servoBucket = hardwareMap.servo.get("servoBucket");
+        limit = hardwareMap.touchSensor.get("limit");
 
 
 
@@ -97,7 +98,7 @@ public class Field_Centric_Pinpoint extends LinearOpMode {
             //frontLeftMotor.setPower(frontLeftPower);
             //backLeftMotor.setPower(backLeftPower);
             //frontRightMotor.setPower(frontRightPower);
-            //backRightMotor.setPower(backRightPower); //Slow mode if left trigger is pused
+            //backRightMotor.setPower(backRightPower); //Slow mode if left trigger is pushed
 
             //Use Super Slow Mode if Left Trigger is pushed
             if (gamepad1.left_trigger != 0) {
@@ -108,12 +109,12 @@ public class Field_Centric_Pinpoint extends LinearOpMode {
 
                 //Use Slow Mode if Left Trigger is pushed
             } else if (gamepad1.right_trigger != 0) {
-                frontLeftMotor.setPower(.3 * frontLeftPower);
-                backLeftMotor.setPower(.3 * backLeftPower);
-                frontRightMotor.setPower(.3 * frontRightPower);
-                backRightMotor.setPower(.3 * backRightPower);
+                frontLeftMotor.setPower(.4 * frontLeftPower);
+                backLeftMotor.setPower(.4 * backLeftPower);
+                frontRightMotor.setPower(.4 * frontRightPower);
+                backRightMotor.setPower(.4 * backRightPower);
             }
-            //Run at Full Power if not button is pushed
+            //Run at Full Power if neither trigger is pushed
             else {
                 frontLeftMotor.setPower(.9 * frontLeftPower);
                 backLeftMotor.setPower(.9 * backLeftPower);
@@ -123,56 +124,67 @@ public class Field_Centric_Pinpoint extends LinearOpMode {
 
             telemetry.update();
 
-            //Arm Code
-            //Puts Slide into Extended Position with Controller 2 X button
-            if (gamepad2.x) {
-                servoSlide.setPosition(.33);
-
+        //Front Slide Code:
+            //Stops the Front Slide
+            if (gamepad2.left_trigger == 0 && gamepad2.right_trigger ==0) {
+                servoSlide.setPosition(.5);
             }
-            //Puts Slide in  Neutral Position with Controller 2 A button
-            if (gamepad2.a) {
-                servoSlide.setPosition(.48);
-
+            //Extends the Front Slide
+                //Stops the Slide if the magnetic limit switch is pressedr
+                else if (gamepad2.left_trigger != 0 && limit.isPressed()) {
+                servoSlide.setPosition(.5);
+                }
+                //Extends the slide if the limit switch is not pressed
+                else if (gamepad2.left_trigger != 0 ) {
+                servoSlide.setPosition(.5 +.5 * gamepad2.left_trigger);
+                }
+            //Retract the Front Slide
+            else if (gamepad2.right_trigger != 0) {
+                servoSlide.setPosition(.5 - .5 * gamepad2.right_trigger);
             }
-            //Puts Slide into Retracted Position with Controller 2 B button
-            if (gamepad2.b) {
-                servoSlide.setPosition(.53);
+
+        //Moves Elbow
+            //Moves Elbow towards ground
+            if (gamepad2.right_stick_y < 0.1){
+                motorElbow.setPower(gamepad2.right_stick_y * -0.35);
             }
+            //Moves Elbow back toward the Bucket
+            else if (gamepad2.right_stick_y > 0.1){
+                motorElbow.setPower(gamepad2.right_stick_y * -0.25);
+            }
+            else {motorElbow.setPower(0);}
 
-            //moves arm elbow
-            motorElbow.setPower(gamepad2.right_stick_y * -0.25);
 
-            //moves bucket up
-           if (gamepad2.left_stick_y !=0) {
-               motorBucketArm.setPower(gamepad2.left_stick_y * -1 );
-           }
 
-           //moves bucket to dump
-            if (gamepad2.left_stick_x > 0.25) {
+        //Bucket Code
+            //moves Vertical Linear Slide Up and Down with Left Stick
+            if (gamepad2.left_stick_y >0.1) {
+                motorBucketArm.setPower(gamepad2.left_stick_y * -1 );
+            }
+            else if (gamepad2.left_stick_y <0.1) {
+                motorBucketArm.setPower(gamepad2.left_stick_y * -1 );
+            }
+            else  {
+                motorBucketArm.setPower(0);
+            }
+            //moves bucket to dump by pressing right on the Left Stick
+            if (gamepad2.left_stick_x > 0.35) {
                 servoBucket.setPosition(gamepad2.left_stick_x *0.25);
-
             }
+            // Returns the bucket to it's catching position
             else  servoBucket.setPosition(-0.15);
 
 
-
+        //Hand/Grabber Code
             //opens hand/grabber
-            if (gamepad2.right_trigger != 0) {
+            if (gamepad2.a) {
                 servoHand.setPosition(0);
-
+            }
+            //closes hand/grabber
+            if (gamepad2.x) {
+                servoHand.setPosition(1);
             }
 
-
-           //closes hand/grabber
-           if (gamepad2.left_trigger != 0) {
-               servoHand.setPosition(1);
-
-           }
-
-
-
-
-
-            }// Ends While Loop for OpMode Active
+        }// Ends While Loop for OpMode Active
     }//Ends Public Void
 }//Ends Linear Op Mode
