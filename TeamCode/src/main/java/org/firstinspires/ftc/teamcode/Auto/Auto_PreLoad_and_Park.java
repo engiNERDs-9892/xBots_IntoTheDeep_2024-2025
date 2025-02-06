@@ -62,13 +62,20 @@ public class Auto_PreLoad_and_Park extends LinearOpMode {
         waitForStart();
 
         // Give it commands to run during auto
-        Forward(600,.35);
-        Lift(50,.35);
+        Left(800,.35);
+        Lift(1000,1);
+        Left(200, .50);
+        Lift(50, 1);
+        Dump();
+        sleep(1000);
+        ResetBucket();
+        Lift(50, 1);
+        Right(200, 1);
 
 
 
 
-    }// ends public final void runOpModeu l
+    }// ends public final void runOpMode
 
 //enter functions here
  public void Forward (int target, double speed) {
@@ -286,16 +293,19 @@ public class Auto_PreLoad_and_Park extends LinearOpMode {
     // Open Hand Function
     public void Open (){
         servoHand.setPosition(0);
+
     }//Closes Open Function
 
     //Close Hand Function
     public void Close (){
         servoHand.setPosition(1);
+
     }//Closes Close Function
 
     //Dump Bucket Function
     public void Dump (){
         servoBucket.setPosition(0.25);
+
     }//Closes Dump Function
 
     //Reset Bucket Function
