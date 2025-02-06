@@ -48,12 +48,6 @@ public class Auto_PreLoad_and_Park extends LinearOpMode {
         motorFR.setPower(0);
         motorBR.setPower(0);
 
-        motorFL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        motorBL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        motorFR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        motorBR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
-
 
 
 
@@ -62,12 +56,14 @@ public class Auto_PreLoad_and_Park extends LinearOpMode {
         waitForStart();
 
         // Give it commands to run during auto
-        Left(800,.35);
+
+
+        Left(800,.25);
         Lift(1000,1);
-        Left(200, .50);
-        Lift(50, 1);
+        Left(200, .25);
+        Lift(100, 1);
         Dump();
-        sleep(1000);
+        sleep(2000);
         ResetBucket();
         Lift(50, 1);
         Right(200, 1);
@@ -104,7 +100,7 @@ public class Auto_PreLoad_and_Park extends LinearOpMode {
       motorFL.setPower(speed);
       motorFR.setPower(speed);
 
-      while (opModeIsActive() && (motorBL.isBusy())){
+      while (opModeIsActive() && (motorBL.isBusy() || motorFR.isBusy() || motorFL.isBusy() )){
 
       }
       motorFL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -139,7 +135,7 @@ public class Auto_PreLoad_and_Park extends LinearOpMode {
         motorFL.setPower(speed);
         motorFR.setPower(speed);
 
-        while (opModeIsActive() && (motorBL.isBusy())){
+        while (opModeIsActive() && (motorBL.isBusy() || motorFR.isBusy() || motorFL.isBusy() )){
 
         }
         motorFL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -175,7 +171,7 @@ public class Auto_PreLoad_and_Park extends LinearOpMode {
         motorFL.setPower(speed);
         motorFR.setPower(speed);
 
-        while (opModeIsActive() && (motorBL.isBusy())){
+        while (opModeIsActive() && (motorBL.isBusy() || motorFR.isBusy() || motorFL.isBusy() )){
 
         }
         motorFL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -210,7 +206,7 @@ public class Auto_PreLoad_and_Park extends LinearOpMode {
         motorFL.setPower(speed);
         motorFR.setPower(speed);
 
-        while (opModeIsActive() && (motorBL.isBusy())){
+        while (opModeIsActive() && (motorBL.isBusy() || motorFR.isBusy() || motorFL.isBusy() )){
 
         }
         motorFL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -244,13 +240,13 @@ public class Auto_PreLoad_and_Park extends LinearOpMode {
         motorBL.setPower(speed);
         motorBR.setPower(speed);
 
-        while (opModeIsActive() && (motorBL.isBusy())){
+        while (opModeIsActive() && (motorBL.isBusy() || motorFR.isBusy() || motorFL.isBusy() )){
 
         }
         motorFL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorFR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorBL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        motorFR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorBR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
     }// Closes Right Function
 
@@ -258,7 +254,7 @@ public class Auto_PreLoad_and_Park extends LinearOpMode {
         motorFL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorFR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorBL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        motorFR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorBR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         motorBL.setDirection(DcMotorSimple.Direction.REVERSE);
         motorFL.setDirection(DcMotorSimple.Direction.FORWARD);
@@ -280,8 +276,16 @@ public class Auto_PreLoad_and_Park extends LinearOpMode {
         motorBL.setPower(speed);
         motorBR.setPower(speed);
 
-        while (opModeIsActive() && (motorBL.isBusy())){
-
+        while (opModeIsActive() && (motorBL.isBusy() || motorFR.isBusy() || motorFL.isBusy() )){
+            telemetry.addData("Bltarget", motorBL.getTargetPosition());
+            telemetry.addData("Blposition", motorBL.getCurrentPosition());
+            telemetry.addData("Brtarget", motorBR.getTargetPosition());
+            telemetry.addData("Brposition", motorBR.getCurrentPosition());
+            telemetry.addData("Fltarget", motorFL.getTargetPosition());
+            telemetry.addData("Flposition", motorFL.getCurrentPosition());
+            telemetry.addData("Frtarget", motorFR.getTargetPosition());
+            telemetry.addData("Frposition", motorFR.getCurrentPosition());
+            telemetry.update();
         }
         motorFL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorFR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
